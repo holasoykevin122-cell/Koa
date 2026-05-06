@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/v2", "destination": "/Koa Landing v2.html" },
     { "source": "/(.*)", "destination": "/Koa Landing.html" }
   ]
 }
