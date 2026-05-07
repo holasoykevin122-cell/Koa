@@ -2105,7 +2105,18 @@
 
   renderCart();
 </script>
+ <style>
+  /* Esto mueve el botón del chat y la ventana hacia arriba */
+  .n8n-chat-widget {
+    bottom: 90px !important; /* Ajusta este número (ej. 100px) hasta que quede perfecto */
+  }
+</style>
+
+<script type="module">
+  // ... resto de tu código de n8n ...
+</script>
  <script type="module">
+  
       import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
       createChat({
