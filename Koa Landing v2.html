@@ -2115,26 +2115,42 @@
 <script type="module">
   // ... resto de tu código de n8n ...
 </script>
- <script type="module">
-  
-      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+ <style>
+  /* Ajuste para que no se cruce con el otro botón */
+  :root {
+    --n8n-chat-widget-offset-bottom: 100px; 
+  }
 
-      createChat({
-        webhookUrl: 'http://localhost:5678/webhook/e8836f9d-28d8-47b3-bd44-b5a3567227be/chat',
-        webhookConfig: {
-          method: 'POST'
-        },
-        title: '¡Hola! 👋',
-        subtitle: 'Estamos aquí para ayudarte 24/7.',
-        footer: 'Escrito por Nathan',
-        welcomeMessage: '¡Hola! Mi nombre es Nathan. ¿En qué puedo ayudarte hoy?',
-        showWelcomeMessage: true,
-        backgroundColor: '#000827',
-        mainColor: '#E91E63', // Color que combine con tu landing
-      });
-    </script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" />
+  .n8n-chat-widget {
+    bottom: var(--n8n-chat-widget-offset-bottom) !important;
+    z-index: 9999 !important; /* Asegura que esté por encima de todo */
+  }
 
+  /* Ajusta también la posición de la ventana cuando se abre */
+  .n8n-chat-widget-window {
+    bottom: calc(var(--n8n-chat-widget-offset-bottom) + 60px) !important;
+  }
+</style>
+
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+  createChat({
+    webhookUrl: 'http://localhost:5678/webhook/e8836f9d-28d8-47b3-bd44-b5a3567227be/chat',
+    webhookConfig: {
+      method: 'POST'
+    },
+    title: '¡Hola! 👋',
+    subtitle: 'Estamos aquí para ayudarte 24/7.',
+    footer: 'Escrito por Nathan',
+    welcomeMessage: '¡Hola! Mi nombre es Nathan. ¿En qué puedo ayudarte hoy?',
+    showWelcomeMessage: true,
+    backgroundColor: '#000827',
+    mainColor: '#ff4b6b',
+  });
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" />
   </body>
 </html>
 </body>
