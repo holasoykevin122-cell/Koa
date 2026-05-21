@@ -238,6 +238,11 @@
     0%,100% { box-shadow: 0 0 0 0 rgba(176,244,0,0.6); }
     50% { box-shadow: 0 0 0 5px rgba(176,244,0,0); }
   }
+  #revenueCanvas {
+    width: 100%;
+    height: 190px;
+    display: block;
+  }
 
   /* ═══════════════════════════════════
      TICKER
@@ -1125,6 +1130,7 @@
 
     .hero { padding: 148px 48px 96px; }
     .revenue-chart { margin-top: 60px; }
+    #revenueCanvas { height: 240px; }
 
     .ticker { padding: 17px 0; }
     .ticker-item { font-size: 12px; }
@@ -1217,6 +1223,7 @@
   @media (min-width: 1100px) {
     .nav { padding: 20px 64px; }
     .hero { padding: 160px 64px 110px; }
+    #revenueCanvas { height: 280px; }
     .section { padding: 110px 64px; }
     .section.results { padding: 0 64px 110px; }
     .section.logos { padding: 0 64px 110px; }
@@ -1798,6 +1805,174 @@
   });
 
   // ── Revenue Chart
+  (function () {
+    const wrap   = document.getElementById('revenueChartWrap');
+    const canvas = document.getElementById('revenueCanvas');
+    const valEl  = document.getElementById('rchartVal');
+    if (!canvas || !wrap) return;
+
+    const data    = [20, 27, 35, 46, 58, 70, 81, 91, 100];
+    const labels  = ['Antes', 'Mes 1', 'Mes 2', 'Mes 3', 'Mes 4', 'Mes 5', 'Mes 6', 'Mes 7', 'Hoy'];
+    const MIN = 20, MAX = 100;
+    const DURATION = 2400;
+    let started = false, animStart = null;
+
+    function draw(progress) {
+      const dpr  = window.devicePixelRatio || 1;
+      const W    = canvas.offsetWidth;
+      const H    = canvas.offsetHeight;
+      canvas.width  = W * dpr;
+      canvas.height = H * dpr;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+
+      const padL = 52, padR = 14, padT = 14, padB = 34;
+      const cw = W - padL - padR;
+      const ch = H - padT - padB;
+
+      const xPos = i => padL + (i / (data.length - 1)) * cw;
+      const yPos = v => padT + ch - ((v - MIN) / (MAX - MIN)) * ch;
+
+      ctx.clearRect(0, 0, W, H);
+
+      [20, 40, 60, 80, 100].forEach(v => {
+        const y = yPos(v);
+        ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 6]);
+        ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = 'rgba(255,255,255,0.28)';
+        ctx.font = `${Math.max(9, Math.round(W * 0.018))}px 'DM Sans',sans-serif`;
+        ctx.textAlign = 'right';
+        ctx.fillText(`$${v}M`, padL - 7, y + 4);
+      });
+
+      const pts = data.map((v, i) => [xPos(i), yPos(v)]);
+      const clipX = padL + cw * progress;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(0, 0, clipX, H);
+      ctx.clip();
+
+      function buildPath() {
+        ctx.moveTo(pts[0][0], pts[0][1]);
+        for (let i = 1; i < pts.length; i++) {
+          const dx = (pts[i][0] - pts[i - 1][0]) / 2.6;
+          ctx.bezierCurveTo(
+            pts[i-1][0] + dx, pts[i-1][1],
+            pts[i][0]   - dx, pts[i][1],
+            pts[i][0],        pts[i][1]
+          );
+        }
+      }
+
+      const fillGrad = ctx.createLinearGradient(0, padT, 0, padT + ch);
+      fillGrad.addColorStop(0, 'rgba(176,244,0,0.20)');
+      fillGrad.addColorStop(0.7, 'rgba(176,244,0,0.04)');
+      fillGrad.addColorStop(1, 'rgba(176,244,0,0)');
+      ctx.beginPath();
+      buildPath();
+      ctx.lineTo(pts[pts.length - 1][0], padT + ch);
+      ctx.lineTo(pts[0][0], padT + ch);
+      ctx.closePath();
+      ctx.fillStyle = fillGrad;
+      ctx.fill();
+
+      ctx.beginPath(); buildPath();
+      ctx.strokeStyle = 'rgba(176,244,0,0.15)';
+      ctx.lineWidth = 10;
+      ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+      ctx.stroke();
+
+      ctx.beginPath(); buildPath();
+      ctx.strokeStyle = '#b0f400';
+      ctx.lineWidth = 2.5;
+      ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+      ctx.shadowColor = 'rgba(176,244,0,0.7)';
+      ctx.shadowBlur = 8;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      ctx.restore();
+
+      const revealed = Math.min(data.length - 1, Math.ceil(progress * (data.length - 1)));
+      for (let i = 0; i <= revealed; i++) {
+        const [x, y] = pts[i];
+        const isEndpoint = i === 0 || i === data.length - 1;
+
+        const halo = ctx.createRadialGradient(x, y, 0, x, y, 14);
+        halo.addColorStop(0, 'rgba(176,244,0,0.22)');
+        halo.addColorStop(1, 'rgba(176,244,0,0)');
+        ctx.beginPath(); ctx.arc(x, y, 14, 0, Math.PI * 2);
+        ctx.fillStyle = halo; ctx.fill();
+
+        if (isEndpoint) {
+          ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(176,244,0,0.45)';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        }
+
+        ctx.beginPath(); ctx.arc(x, y, isEndpoint ? 4.5 : 3, 0, Math.PI * 2);
+        ctx.fillStyle = '#b0f400';
+        ctx.shadowColor = 'rgba(176,244,0,0.9)'; ctx.shadowBlur = 8;
+        ctx.fill(); ctx.shadowBlur = 0;
+
+        const fs = Math.max(9, Math.round(W * 0.018));
+        ctx.fillStyle = isEndpoint ? 'rgba(255,255,255,0.65)' : 'rgba(255,255,255,0.2)';
+        ctx.font = `${isEndpoint ? 600 : 400} ${fs}px 'DM Sans',sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.fillText(labels[i], x, H - padB + 20);
+
+        if (i === revealed && i > 0) {
+          const label = `$${data[i]}M`;
+          const bW = 44, bH = 22, bX = x - bW / 2, bY = y - 36;
+          ctx.fillStyle = '#b0f400';
+          ctx.beginPath();
+          ctx.roundRect(bX, bY, bW, bH, 5);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x - 5, bY + bH); ctx.lineTo(x + 5, bY + bH); ctx.lineTo(x, bY + bH + 6);
+          ctx.closePath(); ctx.fillStyle = '#b0f400'; ctx.fill();
+          ctx.fillStyle = '#000';
+          ctx.font = `700 11px 'DM Sans',sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.fillText(label, x, bY + 15);
+        }
+      }
+
+      const live = Math.round(MIN + (MAX - MIN) * progress);
+      valEl.textContent = live;
+    }
+
+    function animate(ts) {
+      if (!animStart) animStart = ts;
+      const raw    = Math.min(1, (ts - animStart) / DURATION);
+      const eased  = 1 - Math.pow(1 - raw, 3);
+      draw(eased);
+      if (raw < 1) requestAnimationFrame(animate);
+      else draw(1);
+    }
+
+    const chartObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !started) {
+          started = true;
+          requestAnimationFrame(animate);
+          chartObs.unobserve(wrap);
+        }
+      });
+    }, { threshold: 0.25 });
+    chartObs.observe(wrap);
+
+    let resizeT;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeT);
+      resizeT = setTimeout(() => { if (started) draw(1); }, 120);
+    }, { passive: true });
+  })();
 
   // ══════════════════════════════════════
   // CART LOGIC
