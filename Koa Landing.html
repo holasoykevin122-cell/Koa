@@ -966,6 +966,79 @@
     .section.cta-section { padding: 0 80px 140px; }
     .footer { padding: 80px 80px 56px; }
   }
+
+  /* ═══════════════════════════════════
+     CASE DETAIL OVERLAY
+  ═══════════════════════════════════ */
+  .case-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: #0a0a0a;
+    overflow-y: auto;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.3s ease;
+  }
+  .case-overlay.open { opacity: 1; visibility: visible; }
+  .case-topbar {
+    position: sticky; top: 0; z-index: 5;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 14px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .case-back {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff; font-weight: 600; font-size: 14px;
+    padding: 10px 18px; border-radius: 10px;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .case-back:hover { background: rgba(255,255,255,0.12); transform: translateX(-3px); }
+  .case-inner { max-width: 880px; margin: 0 auto; padding: 0 24px 90px; }
+  .case-hero { padding: 52px 0 30px; text-align: center; }
+  .case-cat { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #b0f400; margin-bottom: 14px; }
+  .case-title { font-size: clamp(28px, 5vw, 50px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.07; margin: 0 0 16px; text-wrap: balance; }
+  .case-lead { font-size: clamp(15px, 1.6vw, 18px); color: #a0a0a8; line-height: 1.6; max-width: 600px; margin: 0 auto; }
+  .case-banner { height: 190px; border-radius: 20px; margin: 8px 0 36px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 22px; }
+  .case-banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, rgba(0,0,0,0.55)); }
+  .case-banner-name { position: relative; z-index: 1; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #fff; }
+  .cb-marlo { background: linear-gradient(135deg, #2a2218 0%, #5a4524 55%, #17120a 100%); }
+  .cb-vitalbe { background: linear-gradient(160deg, #0e1a2e 0%, #1f5f4a 55%, #0a0f1a 100%); }
+  .cb-brava { background: linear-gradient(135deg, #1a1a2e 0%, #3a2d5f 50%, #5e4ebb 100%); }
+  .case-metrics { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: rgba(255,255,255,0.06); border-radius: 16px; overflow: hidden; margin-bottom: 10px; }
+  .case-metric { background: #101010; padding: 24px 16px; text-align: center; }
+  .case-metric .big { font-size: clamp(30px, 6vw, 46px); font-weight: 800; color: #b0f400; letter-spacing: -0.03em; line-height: 1; text-shadow: 0 0 18px rgba(176,244,0,0.3); }
+  .case-metric .cap { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.4; }
+  .case-note { font-size: 12px; color: #555; text-align: center; margin: 0 0 40px; }
+  .case-section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #666; margin: 0 0 6px; }
+  .case-step { display: flex; gap: 18px; padding: 30px 0; border-top: 1px solid rgba(255,255,255,0.07); }
+  .case-step-num { flex-shrink: 0; width: 46px; height: 46px; border-radius: 13px; background: rgba(176,244,0,0.1); border: 1px solid rgba(176,244,0,0.25); color: #b0f400; font-weight: 800; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+  .case-step h4 { font-size: 19px; font-weight: 700; margin: 4px 0 10px; letter-spacing: -0.015em; }
+  .case-step p { font-size: 14px; color: #a0a0a8; line-height: 1.7; margin: 0 0 14px; }
+  .case-ul { display: flex; flex-direction: column; gap: 9px; }
+  .case-li { display: flex; gap: 11px; align-items: flex-start; }
+  .case-li .sq { width: 6px; height: 6px; background: #b0f400; border-radius: 2px; margin-top: 6px; flex-shrink: 0; }
+  .case-li span { font-size: 13px; color: #c4c4c8; line-height: 1.5; }
+  .case-ba { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 38px 0 8px; }
+  .case-ba .col { border-radius: 14px; padding: 22px; border: 1px solid rgba(255,255,255,0.07); }
+  .case-ba .before { background: #0e0e0e; }
+  .case-ba .after { background: linear-gradient(155deg, rgba(176,244,0,0.08), rgba(176,244,0,0.02)); border-color: rgba(176,244,0,0.2); }
+  .case-ba .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; margin-bottom: 14px; }
+  .case-ba .before .lbl { color: #666; }
+  .case-ba .after .lbl { color: #b0f400; }
+  .case-ba .b-row { font-size: 13px; color: #c4c4c8; line-height: 1.5; padding: 7px 0; border-top: 1px solid rgba(255,255,255,0.04); }
+  .case-quote { margin: 44px 0; padding: 26px 28px; background: #101010; border-left: 3px solid #b0f400; border-radius: 0 14px 14px 0; }
+  .case-quote p { font-size: 16px; font-style: italic; color: #ddd; line-height: 1.7; margin: 0 0 12px; }
+  .case-quote .who { font-size: 13px; color: #888; font-weight: 600; }
+  .case-cta { text-align: center; margin-top: 50px; padding: 40px 24px; background: linear-gradient(148deg, #1c1e38 0%, #0e0f1e 100%); border: 1px solid rgba(176,244,0,0.12); border-radius: 20px; }
+  .case-cta h3 { font-size: clamp(21px, 3vw, 30px); font-weight: 800; letter-spacing: -0.02em; margin: 0 0 18px; text-wrap: balance; }
+  @media (min-width: 768px) {
+    .case-metrics { grid-template-columns: repeat(4,1fr); }
+    .case-banner { height: 250px; }
+    .case-inner { padding-bottom: 110px; }
+  }
 </style>
 </head>
 <body>
@@ -1208,7 +1281,7 @@
       </div>
       <div class="result-grid">
         <div class="result-card r">
-          <div class="result-name">Yitai — Apparel</div>
+          <div class="result-name">Marlo &amp; Co. — Moda</div>
           <div class="result-img">
             <div class="img-yitai-a"></div>
             <div class="img-yitai-b"></div>
@@ -1249,11 +1322,11 @@
             <span class="tag">Estrategia</span>
             <span class="tag">Email</span>
           </div>
-          <button class="btn-view-more">Ver caso completo</button>
+          <button class="btn-view-more" data-case="marlo">Ver caso completo</button>
         </div>
 
         <div class="result-card r">
-          <div class="result-name">Núcleo — Suplementos D2C</div>
+          <div class="result-name">Vitalbe — Suplementos D2C</div>
           <div class="result-img single">
             <div class="img-pythia" style="height:100%;"></div>
           </div>
@@ -1278,10 +1351,11 @@
             <span class="tag">IA</span>
             <span class="tag">Email Marketing</span>
           </div>
+          <button class="btn-view-more" data-case="vitalbe">Ver caso completo</button>
         </div>
 
         <div class="result-card r">
-          <div class="result-name">Indigo — D2C</div>
+          <div class="result-name">Brava — Accesorios D2C</div>
           <div class="result-img single">
             <div class="img-indigo" style="height:100%;"></div>
           </div>
@@ -1305,6 +1379,7 @@
             <span class="tag">Paid Media</span>
             <span class="tag">Estrategia</span>
           </div>
+          <button class="btn-view-more" data-case="brava">Ver caso completo</button>
         </div>
       </div>
     </div>
@@ -1316,9 +1391,9 @@
       <div class="r"><span class="eyebrow">Clientes</span></div>
       <h2 class="sec-title r">Confiado por marcas<br>que quieren crecer.</h2>
       <div class="logo-grid r">
-        <div class="logo-cell italic">yitai</div>
-        <div class="logo-cell serif">INDIGO</div>
-        <div class="logo-cell">NÚCLEO</div>
+        <div class="logo-cell serif">MARLO&nbsp;&amp;&nbsp;CO.</div>
+        <div class="logo-cell serif">BRAVA</div>
+        <div class="logo-cell">VITALBE</div>
         <div class="logo-cell italic">vértigo</div>
         <div class="logo-cell serif">CLINORTE</div>
         <div class="logo-cell">LA COCINA</div>
@@ -1367,6 +1442,272 @@
       </div>
     </div>
   </footer>
+
+  <!-- ── CASE DETAIL OVERLAYS ── -->
+
+  <!-- MARLO & CO. -->
+  <div class="case-overlay" id="case-marlo">
+    <div class="case-topbar">
+      <button class="case-back" data-case-close>← Volver a los casos</button>
+      <a class="brand" href="#"><div class="star" aria-hidden="true"></div><div class="brand-name">Koa Studio</div></a>
+    </div>
+    <div class="case-inner">
+      <div class="case-hero">
+        <div class="case-cat">Caso de éxito · Moda</div>
+        <h1 class="case-title">Marlo &amp; Co. pasó de vender por impulso a escalar como empresa.</h1>
+        <p class="case-lead">Una marca de ropa que vivía de los picos de Instagram orgánico. Construimos el sistema y convertimos las ventas inestables en crecimiento predecible.</p>
+      </div>
+      <div class="case-banner cb-marlo"><div class="case-banner-name">Marlo &amp; Co.</div></div>
+      <div class="case-metrics">
+        <div class="case-metric"><div class="big">+102%</div><div class="cap">Crecimiento de ingresos YoY</div></div>
+        <div class="case-metric"><div class="big">11.6x</div><div class="cap">Crecimiento en paid media</div></div>
+        <div class="case-metric"><div class="big">+35.6%</div><div class="cap">Aumento de ROAS en Meta</div></div>
+        <div class="case-metric"><div class="big">+83%</div><div class="cap">Crecimiento de pedidos YoY</div></div>
+      </div>
+      <p class="case-note">Resultados medidos año contra año (YoY) sobre la operación del cliente.</p>
+
+      <div class="case-step">
+        <div class="case-step-num">01</div>
+        <div>
+          <div class="case-section-label">El reto</div>
+          <h4>Ventas a tirones y cero control</h4>
+          <p>Marlo &amp; Co. vendía bien cuando un Reel pegaba, pero el resto del mes caía en picada. Habían probado una agencia que entregaba reportes de "alcance" e "impresiones", nunca de ventas. No sabían cuánto costaba traer un cliente ni cuánto valía con el tiempo.</p>
+          <div class="case-ul">
+            <div class="case-li"><div class="sq"></div><span>Dependencia total del orgánico y de la suerte del algoritmo</span></div>
+            <div class="case-li"><div class="sq"></div><span>Campañas sin estructura, presupuesto quemándose sin retorno claro</span></div>
+            <div class="case-li"><div class="sq"></div><span>Atención al cliente manual: tallas, envíos y dudas, todo a mano</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-step">
+        <div class="case-step-num">02</div>
+        <div>
+          <div class="case-section-label">La estrategia</div>
+          <h4>El sistema completo: ads + IA + contenido</h4>
+          <p>Reconstruimos la operación desde la base. Estructura de campañas full-funnel en Meta, creativos UGC que mostraban el producto en uso, una IA en WhatsApp que respondía tallas y envíos al instante, y un sistema de contenido orgánico con guiones que sí vendían.</p>
+          <div class="case-ul">
+            <div class="case-li"><div class="sq"></div><span>Estructura de Meta Ads por etapa: prospección, retargeting y retención</span></div>
+            <div class="case-li"><div class="sq"></div><span>Banco de creativos UGC probados y rotados por rendimiento</span></div>
+            <div class="case-li"><div class="sq"></div><span>Bot de WhatsApp con IA que califica, responde y recupera carritos</span></div>
+            <div class="case-li"><div class="sq"></div><span>Calendario de contenido orgánico atado a la oferta, no al azar</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-step">
+        <div class="case-step-num">03</div>
+        <div>
+          <div class="case-section-label">El resultado</div>
+          <h4>Crecimiento predecible y una marca que opera sola</h4>
+          <p>Marlo &amp; Co. multiplicó por 11 su inversión rentable en paid media y más que duplicó sus ingresos año contra año. Pero lo más importante: hoy el fundador entiende cada número y dirige su empresa, no improvisa una tienda.</p>
+        </div>
+      </div>
+
+      <div class="case-ba">
+        <div class="col before">
+          <div class="lbl">Antes</div>
+          <div class="b-row">Ventas dependientes del orgánico</div>
+          <div class="b-row">ROAS impredecible, mes a mes</div>
+          <div class="b-row">Sin saber el costo real por cliente</div>
+          <div class="b-row">Atención 100% manual</div>
+        </div>
+        <div class="col after">
+          <div class="lbl">Después</div>
+          <div class="b-row">Ventas constantes con ads rentables</div>
+          <div class="b-row">ROAS sostenido y escalable</div>
+          <div class="b-row">Cada peso medido y optimizado</div>
+          <div class="b-row">IA que atiende y califica 24/7</div>
+        </div>
+      </div>
+
+      <div class="case-quote">
+        <p>"Dejamos de rezarle al algoritmo. Ahora tengo un sistema que prende todos los días y yo decido cuánto quiero crecer."</p>
+        <div class="who">— Fundador, Marlo &amp; Co.</div>
+      </div>
+
+      <div class="case-cta">
+        <h3>¿Querés construir un sistema así para tu marca?</h3>
+        <a class="btn-neon" href="https://calendly.com/intygums/30min" target="_blank" rel="noopener noreferrer">Agenda tu llamada gratuita</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- VITALBE -->
+  <div class="case-overlay" id="case-vitalbe">
+    <div class="case-topbar">
+      <button class="case-back" data-case-close>← Volver a los casos</button>
+      <a class="brand" href="#"><div class="star" aria-hidden="true"></div><div class="brand-name">Koa Studio</div></a>
+    </div>
+    <div class="case-inner">
+      <div class="case-hero">
+        <div class="case-cat">Caso de éxito · Suplementos</div>
+        <h1 class="case-title">Vitalbe dejó de quemar presupuesto y empezó a leer sus propios números.</h1>
+        <p class="case-lead">Una marca de suplementos atrapada en una agencia que nunca explicaba nada. Le devolvimos el control con automatización, datos claros y un sistema que escala.</p>
+      </div>
+      <div class="case-banner cb-vitalbe"><div class="case-banner-name">Vitalbe</div></div>
+      <div class="case-metrics">
+        <div class="case-metric"><div class="big">+114%</div><div class="cap">Crecimiento de ingresos YoY</div></div>
+        <div class="case-metric"><div class="big">+49%</div><div class="cap">Aumento en conversión (CVR)</div></div>
+        <div class="case-metric"><div class="big">3.6x</div><div class="cap">ROAS sostenido en Meta</div></div>
+        <div class="case-metric"><div class="big">−31%</div><div class="cap">Reducción del costo por compra</div></div>
+      </div>
+      <p class="case-note">Resultados medidos año contra año (YoY) sobre la operación del cliente.</p>
+
+      <div class="case-step">
+        <div class="case-step-num">01</div>
+        <div>
+          <div class="case-section-label">El reto</div>
+          <h4>Plata invertida, cero claridad</h4>
+          <p>Vitalbe pagaba una agencia mes a mes sin entender qué hacía. Los reportes eran un misterio, las ventas no crecían y cada decisión dependía de un tercero. El fundador sentía que estaba financiando un agujero negro.</p>
+          <div class="case-ul">
+            <div class="case-li"><div class="sq"></div><span>Reportes confusos y sin foco en ventas reales</span></div>
+            <div class="case-li"><div class="sq"></div><span>Atención al cliente lenta: leads que se enfriaban sin respuesta</span></div>
+            <div class="case-li"><div class="sq"></div><span>Cero visibilidad sobre el costo y el retorno de cada campaña</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-step">
+        <div class="case-step-num">02</div>
+        <div>
+          <div class="case-section-label">La estrategia</div>
+          <h4>Automatización, datos y autonomía</h4>
+          <p>Montamos un sistema donde el fundador entiende y decide. Automatizamos la calificación y el seguimiento de leads con IA, ordenamos las campañas con un objetivo claro de retorno, y conectamos email para exprimir cada cliente que ya había comprado.</p>
+          <div class="case-ul">
+            <div class="case-li"><div class="sq"></div><span>Flujos de IA que califican y dan seguimiento a cada lead al instante</span></div>
+            <div class="case-li"><div class="sq"></div><span>Reestructura de Meta Ads con foco en ROAS, no en vanidad</span></div>
+            <div class="case-li"><div class="sq"></div><span>Email marketing para recompra y reactivación de clientes</span></div>
+            <div class="case-li"><div class="sq"></div><span>Dashboard propio para leer las métricas sin depender de nadie</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-step">
+        <div class="case-step-num">03</div>
+        <div>
+          <div class="case-section-label">El resultado</div>
+          <h4>Más ventas, menos costo y el timón en sus manos</h4>
+          <p>Vitalbe más que duplicó sus ingresos año contra año mientras bajaba el costo por compra. Hoy el fundador no le pide permiso a nadie: lee sus números, ajusta y escala con el sistema funcionando solo.</p>
+        </div>
+      </div>
+
+      <div class="case-ba">
+        <div class="col before">
+          <div class="lbl">Antes</div>
+          <div class="b-row">Dependencia total de la agencia</div>
+          <div class="b-row">Reportes que nadie entendía</div>
+          <div class="b-row">Leads que se perdían sin respuesta</div>
+          <div class="b-row">Costo por compra alto y sin control</div>
+        </div>
+        <div class="col after">
+          <div class="lbl">Después</div>
+          <div class="b-row">Autonomía total sobre la operación</div>
+          <div class="b-row">Métricas claras en un dashboard propio</div>
+          <div class="b-row">IA que califica y da seguimiento 24/7</div>
+          <div class="b-row">Costo por compra 31% más bajo</div>
+        </div>
+      </div>
+
+      <div class="case-quote">
+        <p>"Por primera vez sé exactamente de dónde sale cada venta. Dejé de pagarle a una caja negra y ahora yo manejo el negocio."</p>
+        <div class="who">— CEO, Vitalbe</div>
+      </div>
+
+      <div class="case-cta">
+        <h3>¿Querés el control total de tus números?</h3>
+        <a class="btn-neon" href="https://calendly.com/intygums/30min" target="_blank" rel="noopener noreferrer">Agenda tu llamada gratuita</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRAVA -->
+  <div class="case-overlay" id="case-brava">
+    <div class="case-topbar">
+      <button class="case-back" data-case-close>← Volver a los casos</button>
+      <a class="brand" href="#"><div class="star" aria-hidden="true"></div><div class="brand-name">Koa Studio</div></a>
+    </div>
+    <div class="case-inner">
+      <div class="case-hero">
+        <div class="case-cat">Caso de éxito · Accesorios</div>
+        <h1 class="case-title">Brava dejó de vivir de descuentos y construyó una marca rentable.</h1>
+        <p class="case-lead">Una marca de accesorios que solo vendía cuando bajaba el precio. Reposicionamos la oferta y la estrategia de ads para vender por valor, no por descuento.</p>
+      </div>
+      <div class="case-banner cb-brava"><div class="case-banner-name">Brava</div></div>
+      <div class="case-metrics">
+        <div class="case-metric"><div class="big">−67%</div><div class="cap">Reducción de CPA</div></div>
+        <div class="case-metric"><div class="big">4.2x</div><div class="cap">ROAS sostenido en Meta</div></div>
+        <div class="case-metric"><div class="big">+88%</div><div class="cap">Crecimiento de ingresos YoY</div></div>
+        <div class="case-metric"><div class="big">+52%</div><div class="cap">Aumento del ticket promedio</div></div>
+      </div>
+      <p class="case-note">Resultados medidos año contra año (YoY) sobre la operación del cliente.</p>
+
+      <div class="case-step">
+        <div class="case-step-num">01</div>
+        <div>
+          <div class="case-section-label">El reto</div>
+          <h4>Atrapada en la trampa del descuento</h4>
+          <p>Brava solo movía inventario cuando lanzaba una promoción. Cada venta sacrificaba margen y el costo de adquirir un cliente era altísimo. La marca crecía en pedidos pero no en rentabilidad: corría más para quedarse en el mismo lugar.</p>
+          <div class="case-ul">
+            <div class="case-li"><div class="sq"></div><span>Ventas dependientes de descuentos constantes</span></div>
+            <div class="case-li"><div class="sq"></div><span>Costo por adquisición alto que se comía el margen</span></div>
+            <div class="case-li"><div class="sq"></div><span>Una oferta percibida como "barata", no como deseable</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-step">
+        <div class="case-step-num">02</div>
+        <div>
+          <div class="case-section-label">La estrategia</div>
+          <h4>Vender por valor, no por precio</h4>
+          <p>Reconstruimos la oferta y el mensaje para que Brava se percibiera como una marca que vale lo que cuesta. Con creativos que comunicaban valor y una estructura de ads enfocada en clientes correctos, subimos el ticket promedio y desplomamos el costo de adquisición.</p>
+          <div class="case-ul">
+            <div class="case-li"><div class="sq"></div><span>Reposicionamiento de la oferta y la propuesta de valor</span></div>
+            <div class="case-li"><div class="sq"></div><span>Creativos que venden deseo, no descuento</span></div>
+            <div class="case-li"><div class="sq"></div><span>Segmentación hacia el cliente que paga por valor</span></div>
+            <div class="case-li"><div class="sq"></div><span>Estrategia de bundles para subir el ticket promedio</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-step">
+        <div class="case-step-num">03</div>
+        <div>
+          <div class="case-section-label">El resultado</div>
+          <h4>Más margen, más ticket y una marca con poder de precio</h4>
+          <p>Brava bajó su costo de adquisición dos tercios y subió el ticket promedio a la mitad, todo mientras crecía sus ingresos. Hoy vende por deseo, no por promoción, y por fin cada venta deja ganancia real.</p>
+        </div>
+      </div>
+
+      <div class="case-ba">
+        <div class="col before">
+          <div class="lbl">Antes</div>
+          <div class="b-row">Ventas solo con descuento</div>
+          <div class="b-row">CPA alto, margen erosionado</div>
+          <div class="b-row">Ticket promedio bajo</div>
+          <div class="b-row">Marca percibida como barata</div>
+        </div>
+        <div class="col after">
+          <div class="lbl">Después</div>
+          <div class="b-row">Ventas por valor, sin remate</div>
+          <div class="b-row">CPA 67% más bajo</div>
+          <div class="b-row">Ticket promedio 52% más alto</div>
+          <div class="b-row">Marca con poder de precio</div>
+        </div>
+      </div>
+
+      <div class="case-quote">
+        <p>"Dejé de competir por ser el más barato. Ahora la gente compra Brava por lo que es, y cada venta por fin me deja ganancia."</p>
+        <div class="who">— Fundadora, Brava</div>
+      </div>
+
+      <div class="case-cta">
+        <h3>¿Querés vender por valor y no por descuento?</h3>
+        <a class="btn-neon" href="https://calendly.com/intygums/30min" target="_blank" rel="noopener noreferrer">Agenda tu llamada gratuita</a>
+      </div>
+    </div>
+  </div>
 
 </div>
 
@@ -1616,6 +1957,27 @@
       resizeT = setTimeout(() => { if (started) draw(1); }, 120);
     }, { passive: true });
   })();
+
+  // ── Case detail overlays (open / close)
+  function closeAllCases() {
+    document.querySelectorAll('.case-overlay.open').forEach(o => o.classList.remove('open'));
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('[data-case]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const ov = document.getElementById('case-' + btn.dataset.case);
+      if (!ov) return;
+      ov.classList.add('open');
+      ov.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  document.querySelectorAll('[data-case-close]').forEach(btn => {
+    btn.addEventListener('click', closeAllCases);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeAllCases();
+  });
 </script>
 </body>
 </html>
