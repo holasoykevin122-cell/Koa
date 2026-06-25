@@ -382,7 +382,7 @@
     border: 1px solid rgba(255,255,255,0.07);
     border-radius: 16px;
     padding: 24px;
-    transition: border-color 0.25s ease;
+    transition: border-color 0.25s ease, transform 0.25s ease;
   }
   .testi:hover { border-color: rgba(176,244,0,0.2); }
   .testi-brand {
@@ -692,6 +692,7 @@
     width: 300px; height: 300px;
     background: radial-gradient(circle, rgba(176,244,0,0.1), transparent 65%);
     pointer-events: none;
+    animation: ctaGlow 9s ease-in-out infinite;
   }
   .cta-card > * { position: relative; }
   .cta-card h2 {
@@ -1039,6 +1040,62 @@
     .case-banner { height: 250px; }
     .case-inner { padding-bottom: 110px; }
   }
+
+  /* ═══════════════════════════════════
+     ANIMATED AURORA + POLISH
+  ═══════════════════════════════════ */
+  .hero-inner { position: relative; z-index: 2; }
+
+  .hero .hero-aurora {
+    position: absolute;
+    inset: -25% 0 0 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    filter: blur(70px);
+  }
+  .hero .hero-aurora span {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    will-change: transform;
+  }
+  .hero .hero-aurora .a1 { width: 46vw; height: 46vw; max-width: 520px; max-height: 520px; top: -14%; left: 4%; background: radial-gradient(circle, rgba(176,244,0,0.30), transparent 70%); animation: aur1 19s ease-in-out infinite; }
+  .hero .hero-aurora .a2 { width: 42vw; height: 42vw; max-width: 480px; max-height: 480px; top: -8%; right: 2%; background: radial-gradient(circle, rgba(86,96,224,0.38), transparent 70%); animation: aur2 23s ease-in-out infinite; }
+  .hero .hero-aurora .a3 { width: 38vw; height: 38vw; max-width: 420px; max-height: 420px; top: 18%; left: 38%; background: radial-gradient(circle, rgba(176,244,0,0.16), transparent 70%); animation: aur3 27s ease-in-out infinite; }
+  @keyframes aur1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(7%, 8%) scale(1.18); } }
+  @keyframes aur2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-8%, 6%) scale(1.12); } }
+  @keyframes aur3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(5%, -7%) scale(1.22); } }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 52px 52px;
+    -webkit-mask-image: radial-gradient(ellipse 78% 70% at 50% 32%, #000 22%, transparent 80%);
+    mask-image: radial-gradient(ellipse 78% 70% at 50% 32%, #000 22%, transparent 80%);
+  }
+
+  @keyframes ctaGlow {
+    0%,100% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+    50% { transform: translateX(-50%) scale(1.3); opacity: 0.55; }
+  }
+
+  .service-card { transition: transform 0.22s ease, box-shadow 0.22s ease; }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(0,0,0,0.45); }
+  .result-card { transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; }
+  .result-card:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(0,0,0,0.4); }
+  .testi:hover { transform: translateY(-3px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero .hero-aurora span, .cta-card::before { animation: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -1057,6 +1114,11 @@
 
   <!-- ── HERO ── -->
   <section class="hero">
+    <div class="hero-aurora" aria-hidden="true">
+      <span class="a1"></span>
+      <span class="a2"></span>
+      <span class="a3"></span>
+    </div>
     <div class="hero-inner">
       <div class="hero-partners r">
         <img src="https://www.flowtiger.com/_next/image?url=%2Fdesign%2Ftiktok-3x.png&w=128&q=75&dpl=dpl_3jGVkoTptQQr5eQuUU5TzNrKfW4s" alt="TikTok" class="partner-logo">
