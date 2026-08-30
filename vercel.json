@@ -2,5 +2,13 @@
   "rewrites": [
     { "source": "/v2", "destination": "/Koa Landing v2.html" },
     { "source": "/(.*)", "destination": "/Koa Landing.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)\\.(jpg|jpeg|png|webp|svg|ico)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }
+      ]
+    }
   ]
 }
