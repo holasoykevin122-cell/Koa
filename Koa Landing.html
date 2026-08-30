@@ -334,6 +334,62 @@
   }
 
   /* ═══════════════════════════════════
+     PROOF — capturas reales de resultados
+  ═══════════════════════════════════ */
+  .proof-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 16px;
+    margin-top: 10px;
+  }
+  .proof {
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    padding: 14px;
+    margin: 0;
+  }
+  .proof-shot {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0d0d0d;
+    line-height: 0;
+  }
+  .proof-shot img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .proof-cap {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 6px 4px;
+  }
+  .proof-brand {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .proof-metric {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #b0f400;
+    white-space: nowrap;
+  }
+  .proof-note {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.5;
+    margin: 18px 0 0;
+  }
+
+  /* ═══════════════════════════════════
      STATS
   ═══════════════════════════════════ */
   .stats-card {
@@ -877,6 +933,13 @@
     .section.logos { padding: 0 48px 96px; }
     .section.cta-section { padding: 0 48px 120px; }
 
+    /* PROOF — grilla 2x2 */
+    .proof-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .proof { padding: 16px; }
+    .proof-cap { padding: 16px 8px 6px; }
+    .proof-metric { font-size: 17px; }
+    .proof-note { font-size: 13px; margin-top: 22px; }
+
     /* STATS — 4 columns */
     .stats-card { padding: 44px 40px; }
     .stats-grid {
@@ -1169,29 +1232,39 @@
   <section class="section">
     <div class="section-inner">
       <div class="r"><span class="eyebrow">Prueba real</span></div>
-      <h2 class="sec-title r">Los números que respaldan el sistema.</h2>
-      <div class="stats-card r">
-        <p class="stats-intro"><b>No es teoría.</b> Es lo que pasa cuando un equipo opera tu cuenta todos los días — medido en ventas reales, no en métricas de vanidad.</p>
-        <div class="stats-grid">
-          <div class="stat">
-            <span class="num">+$1M USD</span>
-            <span class="label">En ventas generadas por las marcas que operamos</span>
-          </div>
-          <div class="stat">
-            <span class="num"><span class="snum" data-target="5">0</span>x</span>
-            <span class="label">ROAS promedio sostenido en campañas</span>
-          </div>
-          <div class="stat">
-            <span class="num">+<span class="snum" data-target="1000">1.000</span></span>
-            <span class="label">Clientes que han superado las 1.000 ventas en un solo día</span>
-          </div>
-          <div class="stat">
-            <span class="num">+<span class="snum" data-target="101">101</span>%</span>
-            <span class="label">Crecimiento YoY promedio en las marcas que operamos</span>
-          </div>
-        </div>
-        <button class="btn-neon block" style="margin-top:24px;" data-scroll-cta>Quiero estos resultados</button>
+      <h2 class="sec-title r">Los números de las marcas que operamos.</h2>
+      <p class="sec-sub r">Capturas directas de las cuentas que manejamos todos los días. Sin gráficos de relleno, sin métricas de vanidad.</p>
+      <div class="proof-grid">
+        <figure class="proof r">
+          <div class="proof-shot"><img src="proof-1.jpg" alt="Panel de ventas de Marlo &amp; Co." loading="lazy" decoding="async"></div>
+          <figcaption class="proof-cap">
+            <span class="proof-brand">Marlo &amp; Co.</span>
+            <span class="proof-metric">+102% ingresos YoY</span>
+          </figcaption>
+        </figure>
+        <figure class="proof r">
+          <div class="proof-shot"><img src="proof-2.jpg" alt="Panel de ventas de Vitalbe" loading="lazy" decoding="async"></div>
+          <figcaption class="proof-cap">
+            <span class="proof-brand">Vitalbe</span>
+            <span class="proof-metric">+114% ingresos YoY</span>
+          </figcaption>
+        </figure>
+        <figure class="proof r">
+          <div class="proof-shot"><img src="proof-3.jpg" alt="Panel de ventas de Brava" loading="lazy" decoding="async"></div>
+          <figcaption class="proof-cap">
+            <span class="proof-brand">Brava</span>
+            <span class="proof-metric">4.2x ROAS sostenido</span>
+          </figcaption>
+        </figure>
+        <figure class="proof r">
+          <div class="proof-shot"><img src="proof-4.jpg" alt="Ventas en un solo día" loading="lazy" decoding="async"></div>
+          <figcaption class="proof-cap">
+            <span class="proof-brand">Pico de un día</span>
+            <span class="proof-metric">+1.000 ventas</span>
+          </figcaption>
+        </figure>
       </div>
+      <p class="proof-note r">Capturas tomadas de las cuentas de nuestros clientes, publicadas con su autorización. Resultados medidos año contra año sobre la operación de cada marca.</p>
     </div>
   </section>
 
