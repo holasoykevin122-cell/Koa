@@ -165,8 +165,7 @@ button { font-family: inherit; }
 .section-inner { max-width: var(--maxw); margin: 0 auto; }
 .section.bg-alt { background: var(--surface); border-block: 1px solid var(--line); }
 .section.services,
-.section.results,
-.section.logos { border-top: 1px solid var(--line); }
+.section.results { border-top: 1px solid var(--line); }
 
 .eyebrow {
   display: inline-flex;
@@ -500,34 +499,6 @@ button { font-family: inherit; }
 }
 
 /* ── Clientes ──────────────────────────────────────────── */
-.logo-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  margin-top: 30px;
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
-}
-.logo-cell {
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: var(--ink-2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 66px;
-  padding: 10px;
-  text-align: center;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.logos-footer {
-  font-size: 12.5px;
-  color: var(--ink-3);
-  margin-top: 18px;
-}
 
 /* ── CTA final ─────────────────────────────────────────── */
 .section.cta-section { border-top: 1px solid var(--line); }
@@ -800,8 +771,6 @@ button { font-family: inherit; }
   .metrics { grid-template-columns: 1fr 1fr; gap: 24px 18px; }
   .metric-num { font-size: 28px; }
 
-  .logo-grid { grid-template-columns: repeat(3, 1fr); }
-  .logo-cell { min-height: 84px; font-size: 14px; }
 
   .cta-card { padding: 52px 46px; }
   .cta-sub { font-size: 17px; }
@@ -1174,24 +1143,6 @@ button { font-family: inherit; }
   </section>
 
   <!-- ── LOGOS ── -->
-  <section class="section logos">
-    <div class="section-inner">
-      <div class="r"><span class="eyebrow">Clientes</span></div>
-      <h2 class="sec-title r">Marcas que confían su<br>operación a nuestro equipo.</h2>
-      <div class="logo-grid r">
-        <div class="logo-cell">MARLO&nbsp;&amp;&nbsp;CO.</div>
-        <div class="logo-cell">BRAVA</div>
-        <div class="logo-cell">VITALBE</div>
-        <div class="logo-cell">vértigo</div>
-        <div class="logo-cell">CLINORTE</div>
-        <div class="logo-cell">LA COCINA</div>
-        <div class="logo-cell">NOVA&nbsp;CO.</div>
-        <div class="logo-cell">m.ospina</div>
-        <div class="logo-cell">LOSTBOYS©</div>
-      </div>
-      <p class="logos-footer r">Marcas de ecommerce en Colombia y LATAM</p>
-    </div>
-  </section>
 
   <!-- ── CTA FINAL ── -->
   <section class="section cta-section" id="cta">
