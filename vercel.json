@@ -1,6 +1,10 @@
 {
+  "redirects": [
+    { "source": "/v2", "destination": "/", "permanent": false }
+  ],
   "rewrites": [
-    { "source": "/v2", "destination": "/Koa Landing v2.html" },
+    { "source": "/privacidad", "destination": "/privacidad.html" },
+    { "source": "/terminos", "destination": "/terminos.html" },
     { "source": "/(.*)", "destination": "/Koa Landing.html" }
   ],
   "headers": [
